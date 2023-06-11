@@ -119,6 +119,7 @@ section {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: 5%;
 }
 
 .enviar:before {
@@ -186,7 +187,8 @@ footer, .eslogan{
     width: 125px;
     transition: 1s;
 }
-  }   
+             
+    
 .reloj {
     color: white;
     font-size: 1.5em;
@@ -196,8 +198,8 @@ footer, .eslogan{
     background-color: blue;
     border: 5px solid black;
     border-radius: 10px;
-    margin-top: 50%;
     margin-bottom: 25%;
+    margin-top: 50%;
 }
 /* CSS para movil */
 
@@ -210,15 +212,12 @@ footer, .eslogan{
         margin: 1em;
     }
 
-    #boton-desencriptar, #boton-copiar{
-        margin-bottom: 1em;
-    }
 }
 
 /* Tablet */
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .textArea, .muestraTexto, .rodapie{
+    .textArea, body, .rodapie{
         width: 90%;
     }
 
@@ -226,9 +225,7 @@ footer, .eslogan{
         margin: 1em;
     }
 
-    #boton-desencriptar, #boton-copiar{
-        margin-bottom: 1em;
-    }
+  
 }
               
             
