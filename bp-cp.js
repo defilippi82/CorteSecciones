@@ -3,7 +3,8 @@ const ctx = canvas.getContext("2d");
 const img = new Image();
 const trabajo = new Image();
 const trabajo2 = new Image();
-img.src = "imagenes/esquemaCom.png";
+img.src = "imagenes/diagramaN.png";
+//img.src = "imagenes/esquemaCom.png";
 trabajo.src = "imagenes/trabajo.png";
 trabajo2.src = "imagenes/trabajo2.png";
 
