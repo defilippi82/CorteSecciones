@@ -76,6 +76,66 @@ function resaltarIguales() {
   }
 }
 
+function resaltarIguales() {
+  let seccionesRepetidas = {};
+  let filasResaltadas = new Set(); // Conjunto de índices de filas que deben ser resaltadas
+
+  // Recorrer todas las filas de la tabla
+  for (var i = 0; i < tabla.rows.length; i++) {
+    var secciones = tabla.rows[i].cells[2].innerHTML.split(","); // Obtener las secciones como un arreglo de valores
+    
+    // Recorrer las secciones de la fila actual
+    for (var j = 0; j < secciones.length; j++) {
+      var seccion = secciones[j].trim(); // Eliminar espacios en blanco alrededor de cada sección
+      
+      // Verificar si la sección ya se encontró en otra fila
+      if (seccionesRepetidas[seccion]) {
+        seccionesRepetidas[seccion].push(i); // Agregar el índice de la fila actual al arreglo de filas repetidas
+      } else {
+        seccionesRepetidas[seccion] = [i]; // Crear un nuevo arreglo con el índice de la fila actual
+      }
+    }
+  }
+
+  // Recorrer todas las filas de la tabla nuevamente para aplicar el resaltado
+  for (var i = 0; i < tabla.rows.length; i++) {
+    var secciones = tabla.rows[i].cells[2].innerHTML.split(","); // Obtener las secciones como un arreglo de valores
+    var tieneRepetidos = false; // Variable para indicar si la fila tiene secciones repetidas en otras filas
+
+    // Recorrer las secciones de la fila actual
+    for (var j = 0; j < secciones.length; j++) {
+      var seccion = secciones[j].trim(); // Eliminar espacios en blanco alrededor de cada sección
+
+      // Verificar si la sección se repite en otras filas
+      if (seccionesRepetidas[seccion].length > 1) {
+        tieneRepetidos = true;
+        break;
+      }
+    }
+
+    // Agregar o quitar el índice de la fila del conjunto de filas resaltadas
+    if (tieneRepetidos) {
+      filasResaltadas.add(i);
+    } else {
+      filasResaltadas.delete(i);
+    }
+    if (tieneRepetidos) {
+      dibujarTrabajo2();
+    } else {
+      dibujarTrabajo();
+    }
+  }
+
+  // Aplicar el resaltado a las filas correspondientes
+  for (var i = 0; i < tabla.rows.length; i++) {
+    if (filasResaltadas.has(i)) {
+      tabla.rows[i].classList.add("resaltado");
+    } else {
+      tabla.rows[i].classList.remove("resaltado");
+    }
+  }
+}
+
 
 function dibujarTrabajo() {
  // ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas antes de dibujar
@@ -133,7 +193,7 @@ function dibujarTrabajo() {
         case "20/21":
           ctx.drawImage(trabajo, 550, 90, 50, 50);
           break;
-        case "40A/41A":
+        case "42/43":
           ctx.drawImage(trabajo, 200, 250, 50, 50);
           break;
         case "22/23":
@@ -141,25 +201,25 @@ function dibujarTrabajo() {
           ctx.drawImage(trabajo, 200, 170, 50, 50);
 
           break;
-        case "42/43":
+        case "44/45":
           ctx.drawImage(trabajo, 275, 250, 50, 50);
           break;
         case "24/25":
           ctx.drawImage(trabajo, 375, 170, 50, 50);
           break;
-        case "42A/43A":
+        case "46/47":
           ctx.drawImage(trabajo, 450, 250, 50, 50);
           break;
         case "26/27":
           ctx.drawImage(trabajo, 500, 170, 50, 50);
           break;
-        case "44/45":
+        case "48/49":
           ctx.drawImage(trabajo, 650, 250, 50, 50);
           break;
         case "28/29":
           ctx.drawImage(trabajo, 625, 170, 50, 50);
           break;
-        case "44A/45A":
+        case "60/61":
           ctx.drawImage(trabajo, 775, 250, 50, 50);
           break;
         case "50/51":
@@ -239,32 +299,32 @@ function dibujarTrabajo2() {
         case "20/21":
           ctx.drawImage(trabajo2, 590, 90, 50, 50);
           break;
-        case "40A/41A":
+        case "42/43":
           ctx.drawImage(trabajo2, 230, 250, 50, 50);
           break;
         case "22/23":
           ctx.drawImage(trabajo2, 740, 90, 50, 50);
           ctx.drawImage(trabajo2, 240, 170, 50, 50);
           break;
-        case "42/43":
+        case "44/45":
           ctx.drawImage(trabajo2, 290, 250, 50, 50);
           break;
         case "24/25":
           ctx.drawImage(trabajo2, 370, 170, 50, 50);
           break;
-        case "42A/43A":
+        case "46/47":
           ctx.drawImage(trabajo2, 465, 250, 50, 50);
           break;
         case "26/27":
           ctx.drawImage(trabajo2, 495, 170, 50, 50);
           break;
-        case "44/45":
+        case "48/49":
           ctx.drawImage(trabajo2, 695, 250, 50, 50);
           break;
         case "28/29":
           ctx.drawImage(trabajo2, 620, 170, 50, 50);
           break;
-        case "44A/45A":
+        case "60/61":
           ctx.drawImage(trabajo2, 800, 250, 50, 50);
           break;
         case "50/51":
@@ -396,7 +456,7 @@ function borrarTrabajo() {
         case "20/21":
           ctx.drawImage(trabajo, 550, 90, 50, 50);
           break;
-        case "40A/41A":
+        case "42/43":
           ctx.drawImage(trabajo, 200, 250, 50, 50);
           break;
         case "22/23":
@@ -404,25 +464,25 @@ function borrarTrabajo() {
           ctx.drawImage(trabajo, 200, 170, 50, 50);
 
           break;
-        case "42/43":
+        case "44/45":
           ctx.drawImage(trabajo, 275, 250, 50, 50);
           break;
         case "24/25":
           ctx.drawImage(trabajo, 375, 170, 50, 50);
           break;
-        case "42A/43A":
+        case "46/47":
           ctx.drawImage(trabajo, 450, 250, 50, 50);
           break;
         case "26/27":
           ctx.drawImage(trabajo, 500, 170, 50, 50);
           break;
-        case "44/45":
+        case "48/49":
           ctx.drawImage(trabajo, 650, 250, 50, 50);
           break;
         case "28/29":
           ctx.drawImage(trabajo, 625, 170, 50, 50);
           break;
-        case "44A/45A":
+        case "60/61":
           ctx.drawImage(trabajo, 775, 250, 50, 50);
           break;
         case "50/51":
@@ -494,5 +554,8 @@ function cargarReloj(){
 
 // Ejecutamos la función 'CargarReloj' 
 cargarReloj();
+  
+
+
   
 
